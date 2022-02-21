@@ -17,4 +17,14 @@ public class Author {
         return name;
     }
     public int getId(){ return id;}
+
+    public boolean equals(Author author){
+        if(this.name.equals(author.getName())){
+            return true;
+        }
+        else {
+            return false;
+        }
+
+    }
 }

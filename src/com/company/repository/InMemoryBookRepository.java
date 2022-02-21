@@ -30,8 +30,10 @@ public class InMemoryBookRepository implements BookRepository {
     public Book[] findByTitle(String title) {
         List<Book> temp = new ArrayList<>();
         for(int i = 0; i< books.size();i++) {
-        if(books.get(i).getTitle().equals(title)){
+        if(!books.get(i).getTitle().isEmpty()){
+            if(books.get(i).getTitle().equals(title)){
             temp.add(books.get(i));
+        }
         }
         }
         if(temp.isEmpty()){
@@ -47,11 +49,30 @@ public class InMemoryBookRepository implements BookRepository {
 
     @Override
     public Book[] findByAuthor(Author author) {
-        return new Book[0];
+        List<Book> temp = new ArrayList<>();
+        for(int i = 0; i< books.size(); i++){
+            if (books.get(i).getAuthor().equals(author)){
+                temp.add(books.get(i));
+            }
+
+        }
+        if(temp.isEmpty()){
+            System.out.println("Don't find this Author ^_^");
+            return new Book[0];
+        }
+        else {
+            return temp.toArray(new Book[0]);
+        }
     }
 
     @Override
     public void deleteByTitle(String title) {
-
+    for(int i = 0; i< books.size(); i++){
+        if(books.get(i).getTitle().equals(title)){
+            return;
+        }
+    }
+       System.out.println("No one book has this title");
+    return;
     }
 }
