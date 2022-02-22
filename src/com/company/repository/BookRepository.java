@@ -7,9 +7,10 @@ import java.util.List;
 
 public interface BookRepository {
      void add(Book book);
-     Book getByIndex(int index);
-     void deleteByIndex(int index);
-     Book[] findByTitle(String title);
+     Book getById(int index);
+     void deleteById(int index);
+     Book findByTitle(String title);
      Book[] findByAuthor(Author author);
      void deleteByTitle(String title);
+     Book[] findAll();
 }

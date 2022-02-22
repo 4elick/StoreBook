@@ -17,33 +17,36 @@ public class InMemoryBookRepository implements BookRepository {
     }
 
     @Override
-    public Book getByIndex(int index) {
-        return books.get(index);
+    public Book getById(int index) {
+         try {
+             return books.get(index);
+         }catch (IndexOutOfBoundsException e){
+             System.err.println(e);
+             return null;
+         }
     }
 
     @Override
-    public void deleteByIndex(int index) {
+    public void deleteById(int index) {
         books.remove(index);
     }
 
     @Override
-    public Book[] findByTitle(String title) {
-        List<Book> temp = new ArrayList<>();
+    public Book findByTitle(String title) {
+
         for(int i = 0; i< books.size();i++) {
-        if(!books.get(i).getTitle().isEmpty()){
-            if(books.get(i).getTitle().equals(title)){
-            temp.add(books.get(i));
-        }
-        }
-        }
-        if(temp.isEmpty()){
-            System.out.println("No one book has this title^_^");
-            return new Book[0];
-        }
-        else {
-            return temp.toArray(new Book[0]);
+            if(books.get(i).getTitle().isEmpty()){
+                continue;
+            }
+            else {
+                if(books.get(i).getTitle().equals(title)){
+                    return books.get(i);
+                }
+            }
         }
 
+            System.out.println("No one book has this title^_^");
+            return books.get(0);
 
     }
 
@@ -69,10 +72,21 @@ public class InMemoryBookRepository implements BookRepository {
     public void deleteByTitle(String title) {
     for(int i = 0; i< books.size(); i++){
         if(books.get(i).getTitle().equals(title)){
+            books.remove(i);
             return;
         }
     }
        System.out.println("No one book has this title");
     return;
+    }
+
+    @Override
+    public Book[] findAll() {
+        if(!books.isEmpty()){
+            return books.toArray(new Book[0]);
+        } else {
+            return new Book[0];
+        }
+
     }
 }

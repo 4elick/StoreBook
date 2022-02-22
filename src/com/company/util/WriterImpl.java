@@ -22,7 +22,9 @@ public class WriterImpl implements Writer{
 
     @Override
     public void writeAuthor(Author author) {
-        System.out.println(author.getName());
+        if(author!=null){
+            System.out.println(author.getName());
+        }
     }
 
     @Override
