@@ -31,6 +31,17 @@ public class InMemoryUserRepository implements UserRepository{
     }
 
     @Override
+    public User findByLogin(String login) {
+        for(int i = 0; i< users.size(); i++){
+            if(users.get(i).getLogin().equals(login)){
+                return users.get(i);
+            }
+        }
+        System.out.println("Incorrect login!");
+        return null;
+    }
+
+    @Override
     public User[] findAll() {
         if(!users.isEmpty()){
             return users.toArray(new User[0]);

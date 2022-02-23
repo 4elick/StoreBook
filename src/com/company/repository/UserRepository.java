@@ -6,6 +6,7 @@ public interface UserRepository {
     void add(User user);
     void deleteById(int id);
     User findById(int id);
+    User findByLogin(String login);
     User[] findAll();
 
 }
