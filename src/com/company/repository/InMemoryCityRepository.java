@@ -17,12 +17,12 @@ public class InMemoryCityRepository implements CityRepository{
 
     @Override
     public City getById(int id) {
-        try {
-            return cities.get(id);
-        }catch (IndexOutOfBoundsException e){
-            System.out.println("You miss p4el");
-            return null; /*уточнить насколько это работает*/
+        for (City city : cities) {
+            if(city.getId() == id) {
+                return city;
+            }
         }
+        return null;
     }
 
     @Override
@@ -31,13 +31,7 @@ public class InMemoryCityRepository implements CityRepository{
     }
 
     @Override
-    public City[] findAll() {
-        if(!cities.isEmpty()){
-            return cities.toArray(new City[0]);
-
-        }
-        else {
-            return new City[0];
-        }
+    public List<City> findAll() {
+        return cities;
     }
 }

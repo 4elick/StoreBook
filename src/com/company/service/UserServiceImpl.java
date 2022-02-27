@@ -4,6 +4,8 @@ import com.company.model.User;
 import com.company.repository.InMemoryUserRepository;
 import com.company.repository.UserRepository;
 
+import java.util.List;
+
 public class UserServiceImpl implements UserService{
     private UserRepository userRepository;
     {
@@ -30,7 +32,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User[] findAll() {
+    public List<User> findAll() {
         return userRepository.findAll();
     }
 }

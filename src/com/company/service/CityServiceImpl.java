@@ -4,6 +4,8 @@ import com.company.model.City;
 import com.company.repository.CityRepository;
 import com.company.repository.InMemoryCityRepository;
 
+import java.util.List;
+
 public class CityServiceImpl implements CityService{
     private CityRepository cityRepository;
     {
@@ -25,7 +27,7 @@ public class CityServiceImpl implements CityService{
     }
 
     @Override
-    public City[] findAll() {
+    public List<City> findAll() {
         return cityRepository.findAll();
     }
 }

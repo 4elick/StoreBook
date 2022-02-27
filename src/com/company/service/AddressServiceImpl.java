@@ -4,8 +4,11 @@ import com.company.model.Address;
 import com.company.repository.AddressRepository;
 import com.company.repository.InMemoryAddressRepository;
 
+import java.util.List;
+
 public class AddressServiceImpl implements AddressService{
    private AddressRepository addressRepository;
+
     {   addressRepository = new InMemoryAddressRepository();    }
 
     @Override
@@ -24,7 +27,7 @@ public class AddressServiceImpl implements AddressService{
     }
 
     @Override
-    public Address[] findAll() {
+    public List<Address> findAll() {
         return addressRepository.findAll();
     }
 }

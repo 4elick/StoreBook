@@ -4,9 +4,13 @@ import com.company.model.Author;
 import com.company.repository.AuthorRepository;
 import com.company.repository.InMemoryAuthorRepository;
 
+import java.util.List;
+
 public class AuthorServiceImpl implements AuthorService{
     private AuthorRepository authorRepository;
+
     {authorRepository = new InMemoryAuthorRepository();}
+
     @Override
     public void add(Author author) {
         authorRepository.add(author);
@@ -23,7 +27,7 @@ public class AuthorServiceImpl implements AuthorService{
     }
 
     @Override
-    public Author[] findAll() {
+    public List<Author> findAll() {
         return authorRepository.findAll();
     }
 }

@@ -9,7 +9,9 @@ import java.util.List;
 public class InMemoryBookRepository implements BookRepository {
     private List<Book> books;
 
-    { books = new ArrayList<>();}
+    {
+        books = new ArrayList<>();
+    }
 
     @Override
     public void add(Book book) {
@@ -17,13 +19,13 @@ public class InMemoryBookRepository implements BookRepository {
     }
 
     @Override
-    public Book getById(int index) {
-         try {
-             return books.get(index);
-         }catch (IndexOutOfBoundsException e){
-             System.err.println(e);
-             return null;
-         }
+    public Book getById(int id) {
+        for (Book book : books) {
+            if (book.getId() == id) {
+                return book;
+            }
+        }
+        return null;
     }
 
     @Override
@@ -33,60 +35,37 @@ public class InMemoryBookRepository implements BookRepository {
 
     @Override
     public Book findByTitle(String title) {
-
-        for(int i = 0; i< books.size();i++) {
-            if(books.get(i).getTitle().isEmpty()){
-                continue;
-            }
-            else {
-                if(books.get(i).getTitle().equals(title)){
-                    return books.get(i);
-                }
+        for (Book book : books) {
+            if (book.getTitle().equals(title)) {
+                return book;
             }
         }
-
-            System.out.println("No one book has this title^_^");
-            return books.get(0);
-
+        return null;
     }
 
     @Override
-    public Book[] findByAuthor(Author author) {
+    public List<Book> findByAuthor(Author author) {
         List<Book> temp = new ArrayList<>();
-        for(int i = 0; i< books.size(); i++){
-            if (books.get(i).getAuthor().equals(author)){
-                temp.add(books.get(i));
+        for (Book book : books) {
+            if (book.getAuthor().equals(author)) {
+                temp.add(book);
             }
-
         }
-        if(temp.isEmpty()){
-            System.out.println("Don't find this Author ^_^");
-            return new Book[0];
-        }
-        else {
-            return temp.toArray(new Book[0]);
-        }
+        return temp;
     }
 
     @Override
     public void deleteByTitle(String title) {
-    for(int i = 0; i< books.size(); i++){
-        if(books.get(i).getTitle().equals(title)){
-            books.remove(i);
-            return;
+        for (int i = 0; i < books.size(); i++) {
+            if (books.get(i).getTitle().equals(title)) {
+                books.remove(i);
+                return;
+            }
         }
-    }
-       System.out.println("No one book has this title");
-    return;
     }
 
     @Override
-    public Book[] findAll() {
-        if(!books.isEmpty()){
-            return books.toArray(new Book[0]);
-        } else {
-            return new Book[0];
-        }
-
+    public List<Book> findAll() {
+        return books;
     }
 }

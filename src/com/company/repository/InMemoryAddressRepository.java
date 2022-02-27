@@ -17,12 +17,12 @@ public class InMemoryAddressRepository implements AddressRepository{
 
     @Override
     public Address getById(int id) {
-        try {
-            return addresses.get(id);
-        }catch (IndexOutOfBoundsException e){
-            System.out.println("You miss p4el");
-            return null; /*уточнить насколько это работает*/
+        for (Address address : addresses) {
+            if(address.getId() == id){
+                return address;
+            }
         }
+        return null;
     }
 
     @Override
@@ -31,12 +31,7 @@ public class InMemoryAddressRepository implements AddressRepository{
     }
 
     @Override
-    public Address[] findAll() {
-        if(!addresses.isEmpty()){
-            return addresses.toArray(new Address[0]);
-        }
-        else{
-            return new Address[0];
-        }
+    public List<Address> findAll() {
+        return addresses;
     }
 }

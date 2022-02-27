@@ -5,6 +5,8 @@ import com.company.model.Book;
 import com.company.repository.BookRepository;
 import com.company.repository.InMemoryBookRepository;
 
+import java.util.List;
+
 public class BookServiceImpl implements BookService{
     private BookRepository bookRepository;
     {
@@ -32,7 +34,7 @@ public class BookServiceImpl implements BookService{
     }
 
     @Override
-    public Book[] findByAuthor(Author author) {
+    public List<Book> findByAuthor(Author author) {
         return bookRepository.findByAuthor(author);
     }
 
@@ -42,7 +44,7 @@ public class BookServiceImpl implements BookService{
     }
 
     @Override
-    public Book[] findAll() {
+    public List<Book> findAll() {
         return bookRepository.findAll();
     }
 }

@@ -16,12 +16,12 @@ public class InMemoryAuthorRepository implements AuthorRepository{
 
     @Override
     public Author getById(int index) {
-        try {
-            return authors.get(index);
-        }catch (IndexOutOfBoundsException e){
-            System.out.println("You miss p4el");
-            return null; /*уточнить насколько это работает*/
+        for (Author author : authors) {
+            if(author.getId() == index){
+                return author;
+            }
         }
+        return null;
     }
 
     @Override
@@ -30,14 +30,8 @@ public class InMemoryAuthorRepository implements AuthorRepository{
     }
 
     @Override
-    public Author[] findAll() {
-        if(!authors.isEmpty()){
-            return authors.toArray(new Author[0]);
-
-        }
-        else {
-            return new Author[0];
-        }
+    public List<Author> findAll() {
+        return authors;
 
     }
 }

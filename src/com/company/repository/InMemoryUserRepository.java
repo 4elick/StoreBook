@@ -22,32 +22,26 @@ public class InMemoryUserRepository implements UserRepository{
 
     @Override
     public User findById(int id) {
-        try {
-            return users.get(id);
-        }catch (IndexOutOfBoundsException e){
-            System.out.println("You miss p4el");
-            return null; /*уточнить насколько это работает*/
-        }
-    }
-
-    @Override
-    public User findByLogin(String login) {
-        for(int i = 0; i< users.size(); i++){
-            if(users.get(i).getLogin().equals(login)){
-                return users.get(i);
+        for (User user : users) {
+            if(user.getId()==id){
+                return user;
             }
         }
-        System.out.println("Incorrect login!");
         return null;
     }
 
     @Override
-    public User[] findAll() {
-        if(!users.isEmpty()){
-            return users.toArray(new User[0]);
+    public User findByLogin(String login) {
+        for (User user : users) {
+            if(user.getLogin().equals(login)){
+                return user;
+            }
         }
-        else{
-            return new User[0];
-        }
+        return null;
+    }
+
+    @Override
+    public List<User> findAll() {
+        return users;
     }
 }
