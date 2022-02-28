@@ -2,6 +2,7 @@ package com.company.util;
 
 import com.company.model.Author;
 import com.company.model.Book;
+import com.company.model.City;
 
 public interface Writer {
     void write(String input);
@@ -9,4 +10,5 @@ public interface Writer {
     void writeDouble(double input);
     void writeAuthor(Author author);
     void writeBook(Book book);
+    void writeCity(City city);
 }
