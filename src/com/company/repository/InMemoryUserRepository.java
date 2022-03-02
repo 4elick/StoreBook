@@ -5,10 +5,13 @@ import com.company.model.User;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InMemoryUserRepository implements UserRepository{
-    List<User> users;
+public class InMemoryUserRepository implements UserRepository {
+    private List<User> users;
+    private int inc = 0;
 
-    {users = new ArrayList<>();}
+    {
+        users = new ArrayList<>();
+    }
 
     @Override
     public void add(User user) {
@@ -23,7 +26,7 @@ public class InMemoryUserRepository implements UserRepository{
     @Override
     public User findById(int id) {
         for (User user : users) {
-            if(user.getId()==id){
+            if (user.getId() == id) {
                 return user;
             }
         }
@@ -33,7 +36,7 @@ public class InMemoryUserRepository implements UserRepository{
     @Override
     public User findByLogin(String login) {
         for (User user : users) {
-            if(user.getLogin().equals(login)){
+            if (user.getLogin().equals(login)) {
                 return user;
             }
         }

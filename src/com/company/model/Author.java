@@ -5,24 +5,26 @@ public class Author {
     private int age;
     private int id;
 
-    public Author(String name){
+    public Author(String name) {
         this.name = name;
     }
 
-    public Author(String name,int id){
-        this.name = name;
-        this.id = id;
-    }
-    public String getName(){
+    public String getName() {
         return name;
     }
-    public int getId(){ return id;}
 
-    public boolean equals(Author author){
-        if(this.name.equals(author.getName())){
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public boolean equals(Author author) {
+        if (this.name.equals(author.getName())) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
 

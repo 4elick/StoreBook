@@ -11,56 +11,48 @@ import com.company.validator.CityValidator;
 
 import java.util.List;
 
-public class CityActionImpl implements CityAction{
+public class CityActionImpl implements CityAction {
     private Writer writer = new WriterImpl();
     private Reader reader = new ReaderImpl();
     private CityValidator cityValidator = new CityValidator();
     private CityService cityService = new CityServiceImpl();
 
+    public CityActionImpl(Writer writer, Reader reader, CityValidator cityValidator, CityService cityService) {
+        this.writer = writer;
+        this.reader = reader;
+        this.cityValidator = cityValidator;
+        this.cityService = cityService;
+    }
+
     @Override
     public void add() {
         writer.write("Enter name city: ");
         String cityName = reader.readString();
-        if(!cityValidator.isValidCityName(cityName)){
+        if (!cityValidator.isValidCityName(cityName)) {
             writer.write("Incorrect input");
             return;
         }
-        if(!checkCity(cityName)){
+        if (!checkCity(cityName)) {
             writer.write("This city has already been added!");
             return;
-        }
-        writer.write("Enter id:");
-        int id = reader.readInt();
-        if(cityValidator.isPositiveNumber(id)){
-            if(checkCityId(id)){
-                cityService.add(new City(cityName,id));
-                findAll();
-            }
-            else {
-                writer.write("City with this ID already exists");
-            }
-        }
-        else {
-            writer.write("Incorrect input");
+        } else {
+            cityService.add(new City(cityName));
         }
 
     }
-
 
 
     @Override
     public void getById() {
         writer.write("Enter id city: ");
         int id = reader.readInt();
-        if(cityValidator.isPositiveNumber(id)){
-            if(!checkCityId(id)){
-                writer.writeCity(cityService.getById(id));
-            }
-            else {
+        if (cityValidator.isPositiveNumber(id)) {
+            if (cityService.getById(id)!= null) {
+                writer.write("Name city :" + cityService.getById(id).getNameCity() + "City id" + cityService.getById(id).getId());
+            } else {
                 writer.write("There is no city with this id");
             }
-        }
-        else {
+        } else {
             writer.write("Incorrect input");
         }
     }
@@ -69,14 +61,14 @@ public class CityActionImpl implements CityAction{
     public void deleteById() {
         writer.write("Enter id city to delete it:");
         int id = reader.readInt();
-        if(cityValidator.isPositiveNumber(id)){
-            if(!checkCityId(id)){
+        if (cityValidator.isPositiveNumber(id)) {
+            if (cityService.getById(id) != null) {
                 cityService.deleteById(id);
                 findAll();
-            }
-            else {
+            } else {
                 writer.write("There is no city with this id");
             }
+
         }
     }
 
@@ -84,22 +76,15 @@ public class CityActionImpl implements CityAction{
     public void findAll() {
         List<City> cities = cityService.findAll();
         for (City city : cities) {
-            writer.writeCity(city);
-        }
-    }
-    private boolean checkCityId(int id) {
-        if(cityService.getById(id)!= null){
-            return  false;
-        }
-        else {
-            return true;
+            writer.write("Name city :" + city.getNameCity() + "City id" + city.getId());
         }
     }
 
-    private boolean checkCity(String cityName){
+
+    private boolean checkCity(String cityName) {
         List<City> cities = cityService.findAll();
         for (City city : cities) {
-            if(city.getNameCity().equals(cityName)){
+            if (city.getNameCity().equals(cityName)) {
                 return false;
             }
         }

@@ -4,34 +4,29 @@ import com.company.model.Author;
 import com.company.model.Book;
 import com.company.model.City;
 import com.company.repository.*;
+import com.company.service.CityService;
+import com.company.service.CityServiceImpl;
+import com.company.util.Reader;
+import com.company.util.ReaderImpl;
 import com.company.util.Writer;
 import com.company.util.WriterImpl;
+import com.company.validator.CityValidator;
 
 public class Main {
 
     public static void main(String[] args) {
 	// write your code here
-//        Writer writer = new WriterImpl();
-//        BookRepository books = new InMemoryBookRepository();
-//        books.add(new Book(1, new Author("Richard")));
-//        books.add(new Book(2, new Author("Richard"),"POshel ya naxui"));
-//        books.add(new Book(3, new Author("Fedya")));
-//        books.add(new Book(4, new Author("Lars")));
-//        Book[] books1 = books.findAll();
-//        for(int i = 0; i< books1.length;i++){
-//            writer.writeBook(books1[i]);
-//        }
-//        Book sortByAuthor = books.findByTitle("POshel ya naxui");
-//        AuthorRepository a = new InMemoryAuthorRepository();
-//        a.add(new Author("Richard", 0));
-//        a.add(new Author("Richard", 1));
-//        writer.writeAuthor(a.getById(2));
-//        Author[] authors = a.findAll();
-//        for(int i = 0; i< authors.length; i++){
-//            writer.writeAuthor(authors[i]);
-//        }
-        CityRepository cityRepository = new InMemoryCityRepository();
-        cityRepository.add(new City("city", 1));
-        System.out.println(cityRepository.getById(2));
+        Writer writer = new WriterImpl();
+        Reader reader = new ReaderImpl();
+
+        CityService cityService = new CityServiceImpl();
+        CityValidator cityValidator = new CityValidator();
+        CityAction cityAction = new CityActionImpl(writer,reader,cityValidator,cityService);
+        cityAction.add();
+        cityAction.add();
+        cityAction.findAll();
+        cityAction.getById();
+        cityAction.deleteById();
+
     }
 }

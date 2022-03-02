@@ -5,19 +5,24 @@ import com.company.model.Author;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InMemoryAuthorRepository implements AuthorRepository{
+public class InMemoryAuthorRepository implements AuthorRepository {
     List<Author> authors;
-    {authors = new ArrayList<>();}
+    private int inc = 0;
+
+    {
+        authors = new ArrayList<>();
+    }
 
     @Override
     public void add(Author author) {
-          authors.add(author);
+        author.setId(inc++);
+        authors.add(author);
     }
 
     @Override
     public Author getById(int index) {
         for (Author author : authors) {
-            if(author.getId() == index){
+            if (author.getId() == index) {
                 return author;
             }
         }
@@ -25,7 +30,7 @@ public class InMemoryAuthorRepository implements AuthorRepository{
     }
 
     @Override
-    public void deleteById(int index){
+    public void deleteById(int index) {
         authors.remove(index);
     }
 

@@ -6,9 +6,9 @@ import com.company.model.City;
 
 public interface Writer {
     void write(String input);
+
     void writeInt(int input);
+
     void writeDouble(double input);
-    void writeAuthor(Author author);
-    void writeBook(Book book);
-    void writeCity(City city);
+
 }

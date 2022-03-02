@@ -7,11 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InMemoryCityRepository implements CityRepository{
-    List<City> cities;
+    private List<City> cities;
+    private int inc = 0;
     {cities = new ArrayList<>();}
 
     @Override
     public void add(City city) {
+        city.setId(inc++);
         cities.add(city);
     }
 

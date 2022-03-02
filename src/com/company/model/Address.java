@@ -5,11 +5,6 @@ public class Address {
     private City city;
     private int id;
 
-    public Address(String address,City city,int id){
-        this.address = address;
-        this.city = city;
-        this.id = id;
-    }
     public Address(String address,City city) {
         this.address = address;
         this.city = city;
@@ -20,4 +15,7 @@ public class Address {
 
     public City getCity(){ return city;}
     public int getId(){ return id;}
+    public void setId(int id){
+        this.id = id;
+    }
 }

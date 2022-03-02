@@ -5,21 +5,25 @@ public class User {
     private String password;
     private String login;
 
-    public User(int id,String password, String login){
-        this.id = id;
+    public User(String password, String login) {
         this.login = login;
+
         this.password = password;
     }
 
-    public String getLogin(){
+    public String getLogin() {
         return login;
     }
 
-    public String getPassword(){
+    public String getPassword() {
         return password;
     }
 
-    public int getId(){
+    public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

@@ -1,8 +1,6 @@
 package com.company.action;
 
-import com.company.model.Address;
-
-public interface AddressAction {
+interface AddressAction {
     void add();
 
     void getById();

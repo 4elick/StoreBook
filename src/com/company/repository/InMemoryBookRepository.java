@@ -8,6 +8,7 @@ import java.util.List;
 
 public class InMemoryBookRepository implements BookRepository {
     private List<Book> books;
+    private int inc = 0;
 
     {
         books = new ArrayList<>();
@@ -15,6 +16,7 @@ public class InMemoryBookRepository implements BookRepository {
 
     @Override
     public void add(Book book) {
+        book.setId(inc++);
         books.add(book);
     }
 

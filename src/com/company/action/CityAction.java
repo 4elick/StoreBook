@@ -1,10 +1,6 @@
 package com.company.action;
 
-import com.company.model.City;
-
-import java.util.List;
-
-public interface CityAction {
+interface CityAction {
     void add();
     void getById();
     void deleteById();

@@ -46,21 +46,11 @@ public class AddressActionImpl implements AddressAction{
     }
 
     @Override
-    public void getById(int id) {
-
-    }
-
-    @Override
-    public void deleteById(int id) {
-
-    }
-
-    @Override
     public void findAll() {
 
     }
 
-    private boolean checkAddress(String address) {
-        return addressServicefindByName(address) == null;
-    }
+    //private boolean checkAddress(String address) {
+      //  return addressServicefindByName(address) == null;
+    //}
 }
