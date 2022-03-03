@@ -30,4 +30,9 @@ public class AddressServiceImpl implements AddressService{
     public List<Address> findAll() {
         return addressRepository.findAll();
     }
+
+    @Override
+    public Address findByPlace(String place) {
+        return addressRepository.findByPlace(place);
+    }
 }

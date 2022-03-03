@@ -15,7 +15,7 @@ public class InMemoryAddressRepository implements AddressRepository {
 
     @Override
     public void add(Address address) {
-        address.setId(inc++);
+        address.setId(++inc);
         addresses.add(address);
     }
 
@@ -31,11 +31,22 @@ public class InMemoryAddressRepository implements AddressRepository {
 
     @Override
     public void deleteById(int id) {
-        addresses.remove(id);
+        addresses.remove(--id);
+
     }
 
     @Override
     public List<Address> findAll() {
         return addresses;
+    }
+
+    @Override
+    public Address findByPlace(String place) {
+        for (Address address : addresses) {
+            if(address.getPlace().equals(place)){
+                return address;
+            }
+        }
+        return null;
     }
 }

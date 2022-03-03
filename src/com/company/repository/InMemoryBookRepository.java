@@ -16,7 +16,7 @@ public class InMemoryBookRepository implements BookRepository {
 
     @Override
     public void add(Book book) {
-        book.setId(inc++);
+        book.setId(++inc);
         books.add(book);
     }
 
@@ -32,7 +32,8 @@ public class InMemoryBookRepository implements BookRepository {
 
     @Override
     public void deleteById(int index) {
-        books.remove(index);
+        books.remove(--index);
+
     }
 
     @Override
@@ -49,7 +50,7 @@ public class InMemoryBookRepository implements BookRepository {
     public List<Book> findByAuthor(Author author) {
         List<Book> temp = new ArrayList<>();
         for (Book book : books) {
-            if (book.getAuthor().equals(author)) {
+            if (book.getAuthor().getName().equals(author.getName())) {
                 temp.add(book);
             }
         }
@@ -64,6 +65,7 @@ public class InMemoryBookRepository implements BookRepository {
                 return;
             }
         }
+
     }
 
     @Override

@@ -13,12 +13,12 @@ public class InMemoryCityRepository implements CityRepository{
 
     @Override
     public void add(City city) {
-        city.setId(inc++);
+        city.setId(++inc);
         cities.add(city);
     }
 
     @Override
-    public City getById(int id) {
+    public City findById(int id) {
         for (City city : cities) {
             if(city.getId() == id) {
                 return city;
@@ -29,11 +29,21 @@ public class InMemoryCityRepository implements CityRepository{
 
     @Override
     public void deleteById(int id) {
-        cities.remove(id);
+        cities.remove(--id);
     }
 
     @Override
     public List<City> findAll() {
         return cities;
+    }
+
+    @Override
+    public City findByName(String name) {
+        for (City city : cities) {
+            if(city.getNameCity().equals(name)) {
+                return city;
+            }
+        }
+        return null;
     }
 }

@@ -18,7 +18,7 @@ public class CityServiceImpl implements CityService{
 
     @Override
     public City getById(int id) {
-        return cityRepository.getById(id);
+        return cityRepository.findById(id);
     }
 
     @Override
@@ -29,5 +29,10 @@ public class CityServiceImpl implements CityService{
     @Override
     public List<City> findAll() {
         return cityRepository.findAll();
+    }
+
+    @Override
+    public City findByName(String name) {
+        return cityRepository.findByName(name);
     }
 }

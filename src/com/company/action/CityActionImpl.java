@@ -82,13 +82,7 @@ public class CityActionImpl implements CityAction {
 
 
     private boolean checkCity(String cityName) {
-        List<City> cities = cityService.findAll();
-        for (City city : cities) {
-            if (city.getNameCity().equals(cityName)) {
-                return false;
-            }
-        }
-        return true;
+        return cityService.findByName(cityName) == null;
     }
 
 }

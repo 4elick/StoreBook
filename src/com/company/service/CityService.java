@@ -9,4 +9,5 @@ public interface CityService {
     City getById(int id);
     void deleteById(int id);
     List<City> findAll();
+    City findByName(String name);
 }

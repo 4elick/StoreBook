@@ -9,4 +9,5 @@ public interface AddressRepository {
     Address getById(int id);
     void deleteById(int id);
     List<Address> findAll();
+    Address findByPlace(String place);
 }

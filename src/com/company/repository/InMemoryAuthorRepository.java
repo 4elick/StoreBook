@@ -15,7 +15,7 @@ public class InMemoryAuthorRepository implements AuthorRepository {
 
     @Override
     public void add(Author author) {
-        author.setId(inc++);
+        author.setId(++inc);
         authors.add(author);
     }
 
@@ -31,12 +31,23 @@ public class InMemoryAuthorRepository implements AuthorRepository {
 
     @Override
     public void deleteById(int index) {
-        authors.remove(index);
+        authors.remove(--index);
+
     }
 
     @Override
     public List<Author> findAll() {
         return authors;
 
+    }
+
+    @Override
+    public Author findByName(String name) {
+        for (Author author : authors) {
+            if(author.getName().equals(name)){
+                return author;
+            }
+        }
+        return null;
     }
 }

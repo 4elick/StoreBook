@@ -15,12 +15,14 @@ public class InMemoryUserRepository implements UserRepository {
 
     @Override
     public void add(User user) {
+        user.setId(++inc);
         users.add(user);
     }
 
     @Override
     public void deleteById(int id) {
-        users.remove(id);
+        users.remove(--id);
+
     }
 
     @Override

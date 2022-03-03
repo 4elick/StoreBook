@@ -26,7 +26,8 @@ public class Main {
         cityAction.add();
         cityAction.findAll();
         cityAction.getById();
-        cityAction.deleteById();
 
+        cityAction.add();
+        cityAction.findAll();
     }
 }
