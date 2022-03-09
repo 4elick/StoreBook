@@ -4,45 +4,42 @@ import com.company.model.Address;
 import com.company.model.City;
 import com.company.service.AddressService;
 import com.company.service.AddressServiceImpl;
+import com.company.service.CityService;
+import com.company.service.CityServiceImpl;
 import com.company.util.Reader;
 import com.company.util.ReaderImpl;
 import com.company.util.Writer;
 import com.company.util.WriterImpl;
 import com.company.validator.AddressValidator;
-import com.company.validator.CityValidator;
 
 import java.util.List;
 
 public class AddressActionImpl implements AddressAction {
+
     private Writer writer = new WriterImpl();
     private Reader reader = new ReaderImpl();
     private AddressService addressService = new AddressServiceImpl();
     private AddressValidator addressValidator = new AddressValidator();
-    private CityValidator cityValidator = new CityValidator();
+    private CityService cityService = new CityServiceImpl();
 
-    public AddressActionImpl(Writer writer, Reader reader, AddressService addressService, AddressValidator addressValidator) {
+    public AddressActionImpl(Writer writer, Reader reader, AddressService addressService, AddressValidator addressValidator, CityService cityService) {
         this.writer = writer;
         this.reader = reader;
         this.addressService = addressService;
         this.addressValidator = addressValidator;
+        this.cityService = cityService;
     }
 
     @Override
     public void add() {
-        writer.write("Enter address");
+        writer.write("Enter street");
         String address = reader.readString();
         if (!addressValidator.isValidAddressName(address)) {
             writer.write("Incorrect input");
             return;
         }
-        writer.write("Enter city: ");
-        String city = reader.readString();
-        if (!cityValidator.isValidCityName(city)) {
-            writer.write("Incorrect input");
-            return;
-        }
         if (checkAddress(address)) {
-            addressService.add(new Address(address, new City(city)));
+            addressService.add(new Address(address));
         } else {
             writer.write("This address has already been added");
         }
@@ -54,7 +51,7 @@ public class AddressActionImpl implements AddressAction {
         writer.write("Enter id address: ");
         int id = reader.readInt();
         if (addressValidator.isPositiveNumber(id)) {
-            writer.write("City: " + addressService.getById(id).getCity().getNameCity() + "address: " + addressService.getById(id).getPlace());
+            writer.write(  "address: " + addressService.getById(id).getStreet());
         }
     }
 
@@ -77,11 +74,27 @@ public class AddressActionImpl implements AddressAction {
     public void findAll() {
         List<Address> addresses = addressService.findAll();
         for (Address address : addresses) {
-            writer.write("City: " + address.getCity().getNameCity() + "address: " + address.getPlace());
+            writer.write(address.getId() + " " + address.getStreet());
         }
     }
 
-    private boolean checkAddress(String address) {
-        return addressService.findByPlace(address) == null;
+    @Override
+    public void findByStreet() {
+        writer.write("Enter address name:");
+        String address = reader.readString();
+        if (addressValidator.isValidAddressName(address)) {
+            if (!checkAddress(address)) {
+                System.out.println(" street: "+ addressService.findByStreet(address).getStreet() + " id:" + addressService.findByStreet(address).getId());
+            } else {
+                writer.write("No one address has this name");
+            }
+        } else {
+            writer.write("Incorrect input");
+        }
+
+    }
+
+    private boolean checkAddress(String street) {
+        return addressService.findByStreet(street) == null;
     }
 }

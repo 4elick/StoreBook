@@ -29,7 +29,11 @@ public class InMemoryCityRepository implements CityRepository{
 
     @Override
     public void deleteById(int id) {
-        cities.remove(--id);
+        for (City city : cities) {
+            if(city.getId() == id){
+                cities.remove(city);
+            }
+        }
     }
 
     @Override

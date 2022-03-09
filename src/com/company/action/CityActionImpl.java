@@ -48,12 +48,25 @@ public class CityActionImpl implements CityAction {
         int id = reader.readInt();
         if (cityValidator.isPositiveNumber(id)) {
             if (cityService.getById(id)!= null) {
-                writer.write("Name city :" + cityService.getById(id).getNameCity() + "City id" + cityService.getById(id).getId());
+                writer.write("Name city :" + cityService.getById(id).getNameCity() + " City id" + cityService.getById(id).getId());
             } else {
                 writer.write("There is no city with this id");
             }
         } else {
             writer.write("Incorrect input");
+        }
+    }
+
+    @Override
+    public void findByName() {
+        writer.write("Enter name city: ");
+        String cityName = reader.readString();
+        if(cityValidator.isValidCityName(cityName)){
+            if(cityService.findByName(cityName)!= null){
+                System.out.println("Name city " + cityService.findByName(cityName).getNameCity() + " Id city " + cityService.findByName(cityName).getId());
+            } else {
+                System.out.println("No one city has this name");
+            }
         }
     }
 
@@ -76,7 +89,7 @@ public class CityActionImpl implements CityAction {
     public void findAll() {
         List<City> cities = cityService.findAll();
         for (City city : cities) {
-            writer.write("Name city :" + city.getNameCity() + "City id" + city.getId());
+            writer.write(city.getId() + " " + city.getNameCity());
         }
     }
 

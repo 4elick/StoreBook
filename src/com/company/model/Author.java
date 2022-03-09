@@ -5,12 +5,17 @@ public class Author {
     private int age;
     private int id;
 
-    public Author(String name) {
+    public Author(String name,int age) {
         this.name = name;
+        this.age = age;
     }
 
     public String getName() {
         return name;
+    }
+
+    public int getAge(){
+        return age;
     }
 
     public int getId() {

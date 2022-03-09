@@ -8,4 +8,6 @@ interface AddressAction {
     void deleteById();
 
     void findAll();
+
+    void findByStreet();
 }

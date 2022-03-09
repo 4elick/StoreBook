@@ -43,7 +43,7 @@ public class InMemoryAddressRepository implements AddressRepository {
     @Override
     public Address findByPlace(String place) {
         for (Address address : addresses) {
-            if(address.getPlace().equals(place)){
+            if(address.getStreet().equals(place)){
                 return address;
             }
         }

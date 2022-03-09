@@ -9,5 +9,5 @@ public interface AddressService {
     Address getById(int id);
     void deleteById(int id);
     List<Address> findAll();
-    Address findByPlace(String place);
+    Address findByStreet(String place);
 }

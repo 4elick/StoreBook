@@ -32,7 +32,7 @@ public class AddressServiceImpl implements AddressService{
     }
 
     @Override
-    public Address findByPlace(String place) {
+    public Address findByStreet(String place) {
         return addressRepository.findByPlace(place);
     }
 }

@@ -1,19 +1,17 @@
 package com.company.model;
 
 public class Address {
-    private String address;
-    private City city;
+    private String street;
     private int id;
 
-    public Address(String address,City city) {
-        this.address = address;
-        this.city = city;
+    public Address(String street) {
+        this.street = street;
     }
-    public  String getPlace(){
-        return address;
+    public  String getStreet(){
+        return street;
     }
 
-    public City getCity(){ return city;}
+
     public int getId(){ return id;}
     public void setId(int id){
         this.id = id;

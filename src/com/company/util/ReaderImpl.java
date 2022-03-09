@@ -1,10 +1,12 @@
 package com.company.util;
+
 import java.util.Scanner;
+
 public class ReaderImpl implements Reader{
     private Scanner scanner = new Scanner(System.in);
     @Override
     public String readString() {
-        return scanner.nextLine();
+        return scanner.next();
     }
 
     @Override
