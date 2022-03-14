@@ -12,10 +12,17 @@ import com.company.validator.AuthorValidator;
 import java.util.List;
 
 public class AuthorActionImpl implements AuthorAction {
-    private Writer writer = new WriterImpl();
-    private Reader reader = new ReaderImpl();
-    private AuthorService authorService = new AuthorServiceImpl();
-    private AuthorValidator authorValidator = new AuthorValidator();
+    private Writer writer;
+    private Reader reader;
+    private AuthorService authorService;
+    private AuthorValidator authorValidator;
+
+    public AuthorActionImpl(Writer writer, Reader reader, AuthorService authorService, AuthorValidator authorValidator) {
+        this.writer = writer;
+        this.reader = reader;
+        this.authorService = authorService;
+        this.authorValidator = authorValidator;
+    }
 
     @Override
     public void add() {

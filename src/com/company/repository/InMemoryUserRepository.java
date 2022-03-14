@@ -49,4 +49,6 @@ public class InMemoryUserRepository implements UserRepository {
     public List<User> findAll() {
         return users;
     }
+
+
 }

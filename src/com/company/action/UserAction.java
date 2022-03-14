@@ -6,4 +6,5 @@ public interface UserAction {
     void findById();
     void findByLogin();
     void findAll();
+
 }

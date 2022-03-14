@@ -17,39 +17,24 @@ import com.company.validator.UserValidator;
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
+        Main main = new Main();
+        main.run();
+
+
+    }
+    private  void run(){
         Writer writer = new WriterImpl();
         Reader reader = new ReaderImpl();
-        UserValidator userValidator = new UserValidator();
-        UserService userService = new UserServiceImpl();
-        UserAction userAction = new UserActionImpl(writer,reader,userService,userValidator);
-        userAction.add();
-      /*  CityService cityService = new CityServiceImpl();
-        CityValidator cityValidator = new CityValidator();
-        CityAction cityAction = new CityActionImpl(writer,reader,cityValidator,cityService);
-        cityAction.add();
-        cityAction.add();
-        cityAction.findAll();
-        AuthorService authorService = new AuthorServiceImpl();
-        AuthorValidator authorValidator = new AuthorValidator();
-        AuthorAction authorAction = new AuthorActionImpl(writer,reader,authorValidator,authorService);
-        AddressValidator addressValidator = new AddressValidator();
         AddressService addressService = new AddressServiceImpl();
-        AddressAction addressAction = new AddressActionImpl(writer,reader,addressService,addressValidator,cityService);
-        addressAction.add();
-        addressAction.add();
-        addressAction.findAll();
-        System.out.println();
-        addressAction.findByStreet();
-        System.out.println();
-        addressAction.getById();
-
-        addressAction.add();
-        addressAction.findAll();
-        addressAction.add();
-        addressAction.findByStreet();
-        addressAction.getById();*/
-
-
+        CityService cityService = new CityServiceImpl();
+        AuthorService authorService = new AuthorServiceImpl();
+        UserAction userAction = new UserActionImpl(writer,reader,new UserServiceImpl(),new UserValidator());
+        AddressAction addressAction = new AddressActionImpl(writer,reader,addressService,new AddressValidator(),cityService);
+        AuthorAction authorAction = new AuthorActionImpl(writer,reader,authorService,new AuthorValidator());
+        BookAction bookAction = new BookActionImpl(new BookServiceImpl(),authorService,writer,reader);
+        CityAction cityAction = new CityActionImpl(writer,reader,new CityValidator(),cityService);
+        StoreAction storeAction = new StoreActionImpl(writer,reader,new StoreServiceImpl(),cityService,addressService);
+        ConsoleApplication consoleApplication = new ConsoleApplicationImpl(writer,reader,userAction,addressAction,authorAction,bookAction,cityAction,storeAction);
+        consoleApplication.run();
     }
 }

@@ -1,5 +1,7 @@
 package com.company.model;
 
+import java.util.List;
+
 public class User {
     private int id;
     private String password;
@@ -26,4 +28,5 @@ public class User {
     public void setId(int id) {
         this.id = id;
     }
+
 }
