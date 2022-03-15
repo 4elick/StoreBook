@@ -10,5 +10,4 @@ public interface UserRepository {
     User findById(int id);
     User findByLogin(String login);
     List<User> findAll();
-
 }

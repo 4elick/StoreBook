@@ -1,6 +1,9 @@
 package com.company.action;
 
+import com.company.model.Basket;
+import com.company.model.Session;
 import com.company.model.User;
+import com.company.service.SessionService;
 import com.company.service.UserService;
 import com.company.util.Reader;
 import com.company.util.Writer;
@@ -13,28 +16,72 @@ public class UserActionImpl implements UserAction{
     private Reader reader;
     private UserService userService;
     private UserValidator userValidator;
+    private SessionService sessionService;
 
-    public UserActionImpl(Writer writer, Reader reader, UserService userService,UserValidator userValidator) {
+    public UserActionImpl(Writer writer, Reader reader, UserService userService, UserValidator userValidator, SessionService sessionService) {
         this.writer = writer;
         this.reader = reader;
         this.userService = userService;
         this.userValidator = userValidator;
+        this.sessionService = sessionService;
     }
 
     @Override
-    public void add() {
-        writer.write("enter login to create account");
-        String login = reader.readString();
-        if(!userValidator.isValidLogin(login)){
-           writer.write("Incorrect login");
+    public void registration(){
+        while(true) {
+            writer.write("Enter e-mail to create account");
+            String login = reader.readString();
+            if (!userValidator.isValidLogin(login)) {
+                writer.write("Invalid e-mail");
+            } else {
+                writer.write("Enter password");
+                String password = reader.readString();
+                if (!userValidator.isValidPassword(password)) {
+                    writer.write("Invalid password");
+                } else {
+                    User user = new User(password, login);
+                    userService.add(user);
+                    sessionService.add(new Session(user,new Basket()));
+                    return;
+                }
+            }
+
         }
-        writer.write("Enter password");
-        String password = reader.readString();
-        if(!userValidator.isValidPassword(password)){
-            writer.write("Incorrect password");
-        }
-        userService.add(new User(password,login));
     }
+
+    @Override
+    public void authorization() {
+        while (true) {
+            writer.write("Enter e-mail to join:");
+            String login = reader.readString();
+            if (!userValidator.isValidLogin(login)) {
+                writer.write("Invalid e-mail");
+                continue;
+            }
+
+            if(userService.findByLogin(login) == null){
+                writer.write("User with this email does not exist");
+                continue;
+            }
+            User user = userService.findByLogin(login);
+            writer.write("Enter password:");
+            String password = reader.readString();
+            if(!userValidator.isValidPassword(password)){
+                writer.write("Invalid password");
+                continue;
+            }
+            if(user.getPassword().equals(password)){
+                ConsoleApplicationImpl.activateSession = sessionService.getByUser(user);
+                writer.write("Welcome" + user.getLogin());
+                return;
+            }else {
+                writer.write("Incorrect password");
+            }
+
+        }
+    }
+
+
 
     @Override
     public void deleteById() {
@@ -78,4 +125,6 @@ public class UserActionImpl implements UserAction{
             writer.write(user.getId() + " " + user.getLogin());
         }
     }
+
+
 }

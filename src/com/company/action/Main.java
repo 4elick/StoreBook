@@ -28,7 +28,7 @@ public class Main {
         AddressService addressService = new AddressServiceImpl();
         CityService cityService = new CityServiceImpl();
         AuthorService authorService = new AuthorServiceImpl();
-        UserAction userAction = new UserActionImpl(writer,reader,new UserServiceImpl(),new UserValidator());
+        UserAction userAction = new UserActionImpl(writer,reader,new UserServiceImpl(),new UserValidator(),new SessionServiceImpl());
         AddressAction addressAction = new AddressActionImpl(writer,reader,addressService,new AddressValidator(),cityService);
         AuthorAction authorAction = new AuthorActionImpl(writer,reader,authorService,new AuthorValidator());
         BookAction bookAction = new BookActionImpl(new BookServiceImpl(),authorService,writer,reader);

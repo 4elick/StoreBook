@@ -30,16 +30,8 @@ public class StoreActionImpl implements StoreAction {
     public void add() {
         City city;
         Address address;
-        if (selectCity() != null) {
-            city = selectCity();
-        } else {
-            return;
-        }
-        if (selectAddress() != null) {
-            address = selectAddress();
-        } else {
-            return;
-        }
+        city = selectCity();
+        address = selectAddress();
         writer.write("Enter store name: ");
         String name = reader.readString();
         if(storeService.findByName(name)==null){

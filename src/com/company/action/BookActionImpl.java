@@ -25,11 +25,7 @@ public class BookActionImpl implements BookAction {
     @Override
     public void add() {
         Author author;
-        if (selectAuthor() != null) {
-            author = selectAuthor();
-        } else {
-            return;
-        }
+        author =  selectAuthor();
         writer.write("Enter book title");
         String title = reader.readString();
         if (bookService.findByTitle(title) == null) {
@@ -43,7 +39,7 @@ public class BookActionImpl implements BookAction {
     public void getById() {
         writer.write("Enter book id to get:");
         int id = reader.readInt();
-        Book   book = bookService.getById(id);
+        Book book = bookService.getById(id);
         if(book != null){
             writer.write(book.getId() + " " + book.getAuthor().getName() + " " + book.getTitle());
         } else {
@@ -120,5 +116,11 @@ public class BookActionImpl implements BookAction {
         } else {
             return null;
         }
+    }
+    @Override
+    public void addBookInBasket() {
+        writer.write("Write the book id to add in your basket");
+        int id = reader.readInt();
+        ConsoleApplicationImpl.activateSession.addBookInBasket(bookService.getById(id));
     }
 }
