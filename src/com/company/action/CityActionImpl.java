@@ -1,6 +1,6 @@
 package com.company.action;
 
-import com.company.model.City;
+import com.company.entity.City;
 import com.company.service.CityService;
 import com.company.service.CityServiceImpl;
 import com.company.util.Reader;

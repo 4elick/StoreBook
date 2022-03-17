@@ -1,6 +1,6 @@
 package com.company.service;
 
-import com.company.model.Store;
+import com.company.entity.Store;
 
 import java.util.List;
 

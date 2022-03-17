@@ -1,7 +1,7 @@
 package com.company.repository;
 
-import com.company.model.Session;
-import com.company.model.User;
+import com.company.entity.Session;
+import com.company.entity.User;
 
 import java.util.ArrayList;
 import java.util.List;

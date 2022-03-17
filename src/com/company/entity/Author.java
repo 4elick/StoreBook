@@ -1,4 +1,4 @@
-package com.company.model;
+package com.company.entity;
 
 public class Author {
     private String name;

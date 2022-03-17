@@ -1,6 +1,6 @@
 package com.company.service;
 
-import com.company.model.Store;
+import com.company.entity.Store;
 import com.company.repository.InMemoryStoreRepository;
 import com.company.repository.StoreRepository;
 

@@ -1,6 +1,6 @@
 package com.company.repository;
 
-import com.company.model.Author;
+import com.company.entity.Author;
 
 import java.util.ArrayList;
 import java.util.List;

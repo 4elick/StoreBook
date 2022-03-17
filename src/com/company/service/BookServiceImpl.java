@@ -1,7 +1,7 @@
 package com.company.service;
 
-import com.company.model.Author;
-import com.company.model.Book;
+import com.company.entity.Author;
+import com.company.entity.Book;
 import com.company.repository.BookRepository;
 import com.company.repository.InMemoryBookRepository;
 

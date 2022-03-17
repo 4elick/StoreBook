@@ -1,4 +1,4 @@
-package com.company.model;
+package com.company.entity;
 
 public class Address {
     private String street;

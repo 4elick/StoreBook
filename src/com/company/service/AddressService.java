@@ -1,6 +1,6 @@
 package com.company.service;
 
-import com.company.model.Address;
+import com.company.entity.Address;
 
 import java.util.List;
 

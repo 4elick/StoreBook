@@ -1,7 +1,7 @@
 package com.company.service;
 
-import com.company.model.Session;
-import com.company.model.User;
+import com.company.entity.Session;
+import com.company.entity.User;
 import com.company.repository.InMemorySessionRepository;
 import com.company.repository.SessionRepository;
 

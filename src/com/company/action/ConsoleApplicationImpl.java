@@ -1,7 +1,7 @@
 package com.company.action;
 
-import com.company.model.Book;
-import com.company.model.Session;
+import com.company.entity.Book;
+import com.company.entity.Session;
 import com.company.util.Reader;
 import com.company.util.Writer;
 
@@ -17,9 +17,10 @@ public class ConsoleApplicationImpl implements ConsoleApplication {
     CityAction cityAction;
     StoreAction storeAction;
     static Session activateSession;
+    OrderAction orderAction;
+    BasketAction basketAction;
 
-
-    public ConsoleApplicationImpl(Writer writer, Reader reader, UserAction userAction, AddressAction addressAction, AuthorAction authorAction, BookAction bookAction, CityAction cityAction, StoreAction storeAction) {
+    public ConsoleApplicationImpl(Writer writer, Reader reader, UserAction userAction, AddressAction addressAction, AuthorAction authorAction, BookAction bookAction, CityAction cityAction, StoreAction storeAction, OrderAction orderAction,BasketAction basketAction) {
         this.writer = writer;
         this.reader = reader;
         this.userAction = userAction;
@@ -28,6 +29,8 @@ public class ConsoleApplicationImpl implements ConsoleApplication {
         this.bookAction = bookAction;
         this.cityAction = cityAction;
         this.storeAction = storeAction;
+        this.orderAction = orderAction;
+        this.basketAction = basketAction;
     }
 
     @Override
@@ -52,7 +55,7 @@ public class ConsoleApplicationImpl implements ConsoleApplication {
             showMenu();
             int key = reader.readInt();
             if (activateSession == null) {
-                switch (key){
+                switch (key) {
                     case 0:
                         return;
                     case 1:
@@ -81,10 +84,31 @@ public class ConsoleApplicationImpl implements ConsoleApplication {
                         bookAction.findByAuthor();
                         break;
                     case 5:
-                        bookAction.addBookInBasket();
+                        basketAction.addBookInBasket();
                         break;
                     case 6:
                         basketMenu();
+                        orderMenu();
+                        int k = reader.readInt();
+                        switch (k) {
+                            case 0:
+                                break;
+                            case 1:
+                                orderAction.addDelivery();
+                                break;
+                            case 2:
+                                orderAction.addPickUp();
+                                break;
+                            case 3:
+                                orderAction.getOrderHistory();
+                                break;
+                            case 4:
+                                basketAction.deleteBookFromBasket();
+                                break;
+                            default:
+                                writer.write("Incorrect input");
+                                break;
+                        }
                         break;
                     case 7:
                         activateSession = null;
@@ -114,11 +138,20 @@ public class ConsoleApplicationImpl implements ConsoleApplication {
         }
     }
 
-    private void basketMenu(){
+    private void basketMenu() {
         List<Book> books = activateSession.getBasket().getBooks();
         for (Book book : books) {
             writer.write("Your books");
             writer.write(book.getId() + " " + book.getAuthor().getName() + " " + book.getTitle());
         }
+
+    }
+
+    private void orderMenu() {
+        writer.write("0 - Exit from basket");
+        writer.write("1 - Place an order with delivery.");
+        writer.write("2 - Place an order for pickup");
+        writer.write("3 - Order history");
+        writer.write("4 - Delete book from basket");
     }
 }

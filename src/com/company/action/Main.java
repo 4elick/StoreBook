@@ -1,9 +1,5 @@
 package com.company.action;
 
-import com.company.model.Author;
-import com.company.model.Book;
-import com.company.model.City;
-import com.company.repository.*;
 import com.company.service.*;
 import com.company.util.Reader;
 import com.company.util.ReaderImpl;
@@ -27,14 +23,18 @@ public class Main {
         Reader reader = new ReaderImpl();
         AddressService addressService = new AddressServiceImpl();
         CityService cityService = new CityServiceImpl();
+        StoreService storeService = new StoreServiceImpl();
+        BookService bookService = new BookServiceImpl();
         AuthorService authorService = new AuthorServiceImpl();
         UserAction userAction = new UserActionImpl(writer,reader,new UserServiceImpl(),new UserValidator(),new SessionServiceImpl());
         AddressAction addressAction = new AddressActionImpl(writer,reader,addressService,new AddressValidator(),cityService);
         AuthorAction authorAction = new AuthorActionImpl(writer,reader,authorService,new AuthorValidator());
-        BookAction bookAction = new BookActionImpl(new BookServiceImpl(),authorService,writer,reader);
+        BookAction bookAction = new BookActionImpl(bookService,authorService,writer,reader);
         CityAction cityAction = new CityActionImpl(writer,reader,new CityValidator(),cityService);
-        StoreAction storeAction = new StoreActionImpl(writer,reader,new StoreServiceImpl(),cityService,addressService);
-        ConsoleApplication consoleApplication = new ConsoleApplicationImpl(writer,reader,userAction,addressAction,authorAction,bookAction,cityAction,storeAction);
+        StoreAction storeAction = new StoreActionImpl(writer,reader,storeService,cityService,addressService);
+        OrderAction orderAction = new OrderActionImpl(writer,reader,new OrderServiceImpl(),storeService);
+        BasketAction basketAction = new BasketActionImpl(bookService,writer,reader);
+        ConsoleApplication consoleApplication = new ConsoleApplicationImpl(writer,reader,userAction,addressAction,authorAction,bookAction,cityAction,storeAction,orderAction,basketAction);
         consoleApplication.run();
     }
 }

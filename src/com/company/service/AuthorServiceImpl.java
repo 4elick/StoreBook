@@ -1,6 +1,6 @@
 package com.company.service;
 
-import com.company.model.Author;
+import com.company.entity.Author;
 import com.company.repository.AuthorRepository;
 import com.company.repository.InMemoryAuthorRepository;
 

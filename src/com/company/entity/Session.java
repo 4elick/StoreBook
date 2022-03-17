@@ -1,6 +1,4 @@
-package com.company.model;
-
-import java.util.List;
+package com.company.entity;
 
 public class Session {
     private  int id;

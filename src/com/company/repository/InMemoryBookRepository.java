@@ -1,7 +1,7 @@
 package com.company.repository;
 
-import com.company.model.Author;
-import com.company.model.Book;
+import com.company.entity.Author;
+import com.company.entity.Book;
 
 import java.util.ArrayList;
 import java.util.List;

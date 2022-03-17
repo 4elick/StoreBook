@@ -1,12 +1,9 @@
 package com.company.action;
 
-import com.company.model.Author;
+import com.company.entity.Author;
 import com.company.service.AuthorService;
-import com.company.service.AuthorServiceImpl;
 import com.company.util.Reader;
-import com.company.util.ReaderImpl;
 import com.company.util.Writer;
-import com.company.util.WriterImpl;
 import com.company.validator.AuthorValidator;
 
 import java.util.List;

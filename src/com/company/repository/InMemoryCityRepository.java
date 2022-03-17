@@ -1,7 +1,7 @@
 package com.company.repository;
 
 
-import com.company.model.City;
+import com.company.entity.City;
 
 import java.util.ArrayList;
 import java.util.List;

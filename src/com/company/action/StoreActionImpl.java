@@ -1,8 +1,8 @@
 package com.company.action;
 
-import com.company.model.Address;
-import com.company.model.City;
-import com.company.model.Store;
+import com.company.entity.Address;
+import com.company.entity.City;
+import com.company.entity.Store;
 import com.company.service.AddressService;
 import com.company.service.CityService;
 import com.company.service.StoreService;

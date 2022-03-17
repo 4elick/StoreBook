@@ -1,8 +1,8 @@
 package com.company.action;
 
-import com.company.model.Basket;
-import com.company.model.Session;
-import com.company.model.User;
+import com.company.entity.Basket;
+import com.company.entity.Session;
+import com.company.entity.User;
 import com.company.service.SessionService;
 import com.company.service.UserService;
 import com.company.util.Reader;

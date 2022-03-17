@@ -8,5 +8,5 @@ public interface BookAction {
     void findByAuthor();
     void deleteByTitle();
     void findAll();
-    void addBookInBasket();
+
 }

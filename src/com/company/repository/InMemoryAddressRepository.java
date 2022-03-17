@@ -1,6 +1,6 @@
 package com.company.repository;
 
-import com.company.model.Address;
+import com.company.entity.Address;
 
 import java.util.ArrayList;
 import java.util.List;

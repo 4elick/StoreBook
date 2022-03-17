@@ -1,7 +1,6 @@
 package com.company.action;
 
-import com.company.model.Address;
-import com.company.model.City;
+import com.company.entity.Address;
 import com.company.service.AddressService;
 import com.company.service.AddressServiceImpl;
 import com.company.service.CityService;

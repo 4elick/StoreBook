@@ -1,6 +1,6 @@
 package com.company.service;
 
-import com.company.model.City;
+import com.company.entity.City;
 import com.company.repository.CityRepository;
 import com.company.repository.InMemoryCityRepository;
 

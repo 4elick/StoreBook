@@ -1,7 +1,7 @@
 package com.company.action;
 
-import com.company.model.Author;
-import com.company.model.Book;
+import com.company.entity.Author;
+import com.company.entity.Book;
 import com.company.service.AuthorService;
 import com.company.service.BookService;
 import com.company.util.Reader;
@@ -41,7 +41,7 @@ public class BookActionImpl implements BookAction {
         int id = reader.readInt();
         Book book = bookService.getById(id);
         if(book != null){
-            writer.write(book.getId() + " " + book.getAuthor().getName() + " " + book.getTitle());
+            writer.write(book.getId() + " " + book.getAuthor().getName() + " " + book.getTitle()+ " " + book.getPrice() + "$");
         } else {
             writer.write("No one book has this id");
         }
@@ -64,7 +64,7 @@ public class BookActionImpl implements BookAction {
         String title = reader.readString();
         Book book = bookService.findByTitle(title);
         if(book != null){
-            writer.write(book.getId() + " " + book.getAuthor().getName() + " " + book.getTitle());
+            writer.write(book.getId() + " " + book.getAuthor().getName() + " " + book.getTitle()+ " " + book.getPrice() + "$");
         } else {
             writer.write("No one book has this title");
         }
@@ -78,7 +78,7 @@ public class BookActionImpl implements BookAction {
         List<Book> books = bookService.findByAuthor(author);
         if(!books.isEmpty()){
             for (Book book : books) {
-                writer.write(book.getId() + " " + book.getAuthor().getName() + " " + book.getTitle());
+                writer.write(book.getId() + " " + book.getAuthor().getName() + " " + book.getTitle()+ " " + book.getPrice() + "$");
             }
         } else{
             writer.write("Net takogo");
@@ -100,7 +100,7 @@ public class BookActionImpl implements BookAction {
     public void findAll() {
         List<Book> books = bookService.findAll();
         for (Book book : books) {
-            writer.write(book.getId() + " " + book.getAuthor().getName() + " " + book.getTitle());
+            writer.write(book.getId() + " " + book.getAuthor().getName() + " " + book.getTitle() + " " + book.getPrice() + "$");
         }
     }
 
@@ -117,10 +117,5 @@ public class BookActionImpl implements BookAction {
             return null;
         }
     }
-    @Override
-    public void addBookInBasket() {
-        writer.write("Write the book id to add in your basket");
-        int id = reader.readInt();
-        ConsoleApplicationImpl.activateSession.addBookInBasket(bookService.getById(id));
-    }
+
 }
