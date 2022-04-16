@@ -21,7 +21,7 @@ public class InMemorySessionRepository implements SessionRepository{
     @Override
     public Session getByUser(User user) {
         for (Session session : sessions) {
-            if (session.getUser().equals(user)){
+            if (session.getUser().getLogin().equals(user.getLogin())){
                 return session;
             }
         }

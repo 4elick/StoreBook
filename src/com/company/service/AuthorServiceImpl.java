@@ -2,14 +2,15 @@ package com.company.service;
 
 import com.company.entity.Author;
 import com.company.repository.AuthorRepository;
+import com.company.repository.DBRepository.DBAuthorRepository;
 import com.company.repository.InMemoryAuthorRepository;
 
 import java.util.List;
 
 public class AuthorServiceImpl implements AuthorService{
-    private AuthorRepository authorRepository;
+    private DBAuthorRepository authorRepository;
 
-    {authorRepository = new InMemoryAuthorRepository();}
+    {authorRepository = new DBAuthorRepository();}
 
     @Override
     public void add(Author author) {

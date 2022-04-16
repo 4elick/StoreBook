@@ -1,15 +1,15 @@
 package com.company.service;
 
 import com.company.entity.User;
+import com.company.repository.DBRepository.DBUserRepository;
 import com.company.repository.InMemoryUserRepository;
-import com.company.repository.UserRepository;
 
 import java.util.List;
 
 public class UserServiceImpl implements UserService{
-    private UserRepository userRepository;
+    private DBUserRepository userRepository;
     {
-        userRepository = new InMemoryUserRepository();
+        userRepository = new DBUserRepository();
     }
     @Override
     public void add(User user) {

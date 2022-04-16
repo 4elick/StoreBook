@@ -41,7 +41,7 @@ public class UserActionImpl implements UserAction{
                 } else {
                     User user = new User(password, login);
                     userService.add(user);
-                    sessionService.add(new Session(user,new Basket()));
+                    sessionService.add(new Session(userService.findByLogin(user.getLogin()),new Basket()));
                     return;
                 }
             }

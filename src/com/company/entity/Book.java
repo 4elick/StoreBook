@@ -30,6 +30,9 @@ public class Book {
     public void setId(int id) {
         this.id = id;
     }
+    public void setPrice(int price){
+        this.price = price;
+    }
 
     public int getPrice(){
         return price;
@@ -40,7 +43,7 @@ public class Book {
         return "Book{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-                ", author='" + author + '\'' +
+                ", author='" + author.getName() + '\'' +
                 ", price=" + price +
                 '}';
     }

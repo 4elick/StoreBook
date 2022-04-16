@@ -1,15 +1,16 @@
 package com.company.service;
 
 import com.company.entity.Store;
+import com.company.repository.DBRepository.DBStoreRepository;
 import com.company.repository.InMemoryStoreRepository;
 import com.company.repository.StoreRepository;
 
 import java.util.List;
 
 public class StoreServiceImpl implements StoreService{
-    private StoreRepository storeRepository;
+    private DBStoreRepository storeRepository;
     {
-        storeRepository = new InMemoryStoreRepository();
+        storeRepository = new DBStoreRepository();
     }
     @Override
     public void add(Store store) {

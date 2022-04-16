@@ -35,7 +35,7 @@ public class ConsoleApplicationImpl implements ConsoleApplication {
 
     @Override
     public void run() {
-        createStore();
+
         chose();
     }
 

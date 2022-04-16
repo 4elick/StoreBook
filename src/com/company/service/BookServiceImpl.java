@@ -3,14 +3,15 @@ package com.company.service;
 import com.company.entity.Author;
 import com.company.entity.Book;
 import com.company.repository.BookRepository;
+import com.company.repository.DBRepository.DBBookRepository;
 import com.company.repository.InMemoryBookRepository;
 
 import java.util.List;
 
 public class BookServiceImpl implements BookService{
-    private BookRepository bookRepository;
+    private DBBookRepository bookRepository;
     {
-        bookRepository = new InMemoryBookRepository();
+        bookRepository = new DBBookRepository();
     }
 
     @Override

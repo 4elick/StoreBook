@@ -2,14 +2,15 @@ package com.company.service;
 
 import com.company.entity.City;
 import com.company.repository.CityRepository;
+import com.company.repository.DBRepository.DBCityRepository;
 import com.company.repository.InMemoryCityRepository;
 
 import java.util.List;
 
 public class CityServiceImpl implements CityService{
-    private CityRepository cityRepository;
+    private DBCityRepository cityRepository;
     {
-        cityRepository = new InMemoryCityRepository();
+        cityRepository = new DBCityRepository();
     }
     @Override
     public void add(City city) {

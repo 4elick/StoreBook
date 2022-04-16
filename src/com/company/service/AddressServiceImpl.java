@@ -2,14 +2,15 @@ package com.company.service;
 
 import com.company.entity.Address;
 import com.company.repository.AddressRepository;
+import com.company.repository.DBRepository.DBAddressRepository;
 import com.company.repository.InMemoryAddressRepository;
 
 import java.util.List;
 
 public class AddressServiceImpl implements AddressService{
-   private AddressRepository addressRepository;
+   private DBAddressRepository addressRepository;
 
-    {   addressRepository = new InMemoryAddressRepository();    }
+    {   addressRepository = new DBAddressRepository();    }
 
     @Override
     public void add(Address address) {
