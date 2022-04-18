@@ -51,6 +51,7 @@ public class DBBookRepository extends DBAbstractRepository implements BookReposi
             author.setId(resultSet.getInt(2));
             Book book = new Book(author, resultSet.getString(5));
             book.setPrice(resultSet.getInt(6));
+            book.setId(resultSet.getInt(1));
             statement.close();
             return book;
         } catch (SQLException throwables) {
@@ -82,6 +83,7 @@ public class DBBookRepository extends DBAbstractRepository implements BookReposi
             author.setId(resultSet.getInt(2));
             Book book = new Book(author, resultSet.getString(5));
             book.setPrice(resultSet.getInt(6));
+            book.setId(resultSet.getInt(1));
             statement.close();
             return book;
         }catch (SQLException throwables){
@@ -102,6 +104,7 @@ public class DBBookRepository extends DBAbstractRepository implements BookReposi
                 author1.setId(resultSet.getInt(2));
                 Book book = new Book(author1, resultSet.getString(5));
                 book.setPrice(resultSet.getInt(6));
+                book.setId(resultSet.getInt(1));
                 books.add(book);
             }
             statement.close();
@@ -135,6 +138,7 @@ public class DBBookRepository extends DBAbstractRepository implements BookReposi
                 author1.setId(resultSet.getInt(2));
                 Book book = new Book(author1, resultSet.getString(5));
                 book.setPrice(resultSet.getInt(6));
+                book.setId(resultSet.getInt(1));
                 books.add(book);
             }
             statement.close();

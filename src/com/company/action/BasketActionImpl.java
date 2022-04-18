@@ -28,7 +28,7 @@ public class BasketActionImpl implements BasketAction{
     public void deleteBookFromBasket() {
         writer.write("Enter book id to delete it from your basket: ");
         int id = reader.readInt();
-        ConsoleApplicationImpl.activateSession.getBasket().getBooks().remove(bookService.getById(id));
+        ConsoleApplicationImpl.activateSession.getBasket().getBooks().remove(--id);
     }
 
 }
